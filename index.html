@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Template</title>
+    <style>
+        /* Overall styles */
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #090a1a;
+        }
+
+        /* Top section styles */
+        .top-section {
+            height: 30vh;
+            background-image: url("./bg.png");
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative; /* Added position */
+        }
+
+        .top-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.5;
+        }
+
+        .top-section h1 {
+            font-size: 40px;
+            color: white; /* Set text color to white */
+            text-shadow: none; /* Remove text shadow */
+        }
+ 
+
+        /* Content section styles */
+        .content-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 120px;
+        }
+
+        .content-box {
+            width: 30%;
+            background-color: #16182d;
+            border: 1px solid #222b91;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white; /* Set text color to white */
+        }
+
+        .content-box h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content-box p {
+            margin-bottom: 10px;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #222b91;
+            margin-bottom: 10px;
+            background-color: #16182d;
+            color: white; /* Set text color to white */
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .countdown {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 800px) {
+            .content-box {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date().getTime() + 20 * 60 * 60 * 1000; // for 20 hours
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with class="countdown"
+            var countdownElements = document.getElementsByClassName("countdown");
+            for(var i = 0; i < countdownElements.length; i++) {
+                countdownElements[i].innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+            }
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                for(var i = 0; i < countdownElements.length; i++) {
+                    countdownElements[i].innerHTML = "EXPIRED";
+                }
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <div class="top-section">
+        <h1> </h1>
+    </div>
+
+    <div class="content-section">
+        <div class="content-box">
+            <h2>Stake Earn</h2>
+            <p>Lockup period: 1d</p>
+            <p>My stake amount: NaN</p>
+            <p>My Harvest: NaN</p>
+            
+
+            <input type="text" class="input-box" id="input1" placeholder="0">
+
+            <div class="buttons">
+                <button class="button">Receive award</button>
+                <button class="button">Submit</button>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>Ends in</h2>
+            <span class="countdown">00:20:00:00</span>
+        </div>
+
+        <div class="content-box">
+            <h2>Rules</h2>
+            <p>1: This pledge mining pool is the first test. The mining pool lasts for two days. The minimum pledge time is 24 hours. You can redeem it at any time after 24 hours.
+</br>
+2: Taking the number of 314 pledged as the computing power, the mining pool will generate USDT every second, which will be distributed according to the proportion of the mining pool’s computing power.</p>
+        </div>
+    </div>
+<div class="footer">
+        <p style="color: #fff; text-align: center;font-size:12px">2024 314 token all copy right</p>
+
+    </div>
+</body>
+</html>
